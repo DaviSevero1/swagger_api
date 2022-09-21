@@ -34,7 +34,36 @@
         },
         "/faltas": {},
         "/boletos": {},
-        "/boletos/{id}": {},
+        "/boletos/{id}": {
+            "get": {
+                "deion": "Exibe um boleto pelo ID",
+                "parameters":[
+                    {
+                        "name": "id",
+                        "in":"path",
+                        "required": true,
+                        "schema": {
+                            "type": "number"
+                        }
+                    }
+                ]
+                ,"responses": {
+                    "200": {
+                        "description":"Sucesso",
+                        "content":{
+                            "application/json": {
+                                "schema":{
+                                    "$ref":"#/components.schemas/Boletos"
+                                }
+                            }    
+                        }                   
+                    },
+                    "404":{
+                        "description": "Não encontrado"
+                    }
+                }
+            }
+        },
         "/requerimentos": {},
         "/requerimentos/{id}": {}
     },
@@ -77,7 +106,46 @@
                         "example": "5.0"
                     }
                 }
+            },
+            "Boletos": {
+                "type": "object",
+                "properties": {
+                    "periodo": {
+                        "type": "string",
+                        "example": "2021/1"
+                    },
+                    "disciplina": {
+                        "type": "object",
+                        "properties": {
+                            "codigo": {
+                                "type": "string",
+                                "example": "ADS030"
+                            },
+                            "nome": {
+                                "type": "string",
+                                "example": "Manutenção de Software e DevOps"
+                            }
+                        }
+                    },
+                    "a1": {
+                        "type": "string",
+                        "example": "5.2"
+                    },
+                    "a2": {
+                        "type": "string",
+                        "example": "3.8"
+                    },
+                    "a3": {
+                        "type": "string",
+                        "example": "4.8"
+                    },
+                    "media": {
+                        "type": "string",
+                        "example": "5.0"
+                    }
+                }
             }
+            
         }
     }
 }
